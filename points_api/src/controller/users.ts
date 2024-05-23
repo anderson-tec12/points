@@ -1,8 +1,8 @@
-import crypto from 'node:crypto'
-
 import { Knex } from 'knex'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+
+import { UserService } from '../services/users.service'
 
 export function usersRoutes(knex: Knex) {
   return async (app: FastifyInstance) => {
@@ -14,15 +14,43 @@ export function usersRoutes(knex: Knex) {
 
         const { name } = createUserBodySchema.parse(request.body)
 
-        await knex('users').insert({
-          id: crypto.randomUUID(),
-          name,
-        })
+        const userService = new UserService(knex)
+
+        await userService.insertUser(name)
 
         reply.status(200).send()
       } catch {
         reply.status(404).send({ message: 'Error' })
       }
+    })
+
+    app.post('/list', async (request: FastifyRequest, reply: FastifyReply) => {
+      try {
+        const createUsersBodySchema = z.object({
+          usersName: z.string().array(),
+        })
+
+        const { usersName } = createUsersBodySchema.parse(request.body)
+
+        const userService = new UserService(knex)
+
+        await userService.usersInsertList(usersName)()
+
+        reply.status(201)
+      } catch (e) {
+        console.log('Error in process List user names')
+        console.log({ e })
+
+        reply.status(500)
+      }
+    })
+
+    app.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
+      const userService = new UserService(knex)
+
+      const users = await userService.listUsers()
+
+      reply.status(200).send({ users })
     })
   }
 }

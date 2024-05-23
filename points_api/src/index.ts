@@ -1,8 +1,10 @@
 import { app } from './app'
+import { pointsRoutes } from './controller/points'
 import { usersRoutes } from './controller/users'
 import { knex } from './knexConfig'
 
 app.register(usersRoutes(knex), { prefix: 'users' })
+app.register(pointsRoutes(knex), { prefix: 'points' })
 
 app
   .listen({
