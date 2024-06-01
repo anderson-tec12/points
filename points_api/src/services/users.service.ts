@@ -11,7 +11,6 @@ export class UserService {
   usersInsertList(list: string[]) {
     return async () => {
       for (const user of list) {
-        console.log(user)
         await this.driver(this.table).insert({
           id: crypto.randomUUID(),
           name: user,

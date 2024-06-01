@@ -3,6 +3,7 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { dateUtils } from '../utils/date'
 import { PointsService } from '../services/points.service'
+import { UserService } from '../services/users.service'
 
 export function pointsRoutes(knex: Knex) {
   return async (app: FastifyInstance) => {
@@ -62,6 +63,37 @@ export function pointsRoutes(knex: Knex) {
       // console.log({ point })
 
       reply.status(200).send(point)
+    })
+
+    app.get('/resume', async (request: FastifyRequest, reply: FastifyReply) => {
+      const pointsService = new PointsService(knex)
+      const userService = new UserService(knex)
+
+      const monthCurrent = dateUtils.getMonthAndYear()
+
+      const allUsers = await userService.listUsers()
+      const resumeFactory = await pointsService.resumeAll(
+        allUsers,
+        monthCurrent,
+      )
+      const resume = await await resumeFactory()
+
+      const resumeFormatted = resume.map((user) => {
+        const total = user.points.reduce((acc, points) => {
+          acc = acc + points.value
+
+          return acc
+        }, 0)
+
+        return {
+          total,
+          userName: user.userName,
+        }
+      })
+
+      reply.status(200).send({
+        resumeFormatted,
+      })
     })
   }
 }

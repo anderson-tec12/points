@@ -38,8 +38,8 @@ export function usersRoutes(knex: Knex) {
 
         reply.status(201)
       } catch (e) {
-        console.log('Error in process List user names')
-        console.log({ e })
+        console.error('Error in process List user names')
+        console.error({ e })
 
         reply.status(500)
       }

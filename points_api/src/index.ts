@@ -12,5 +12,5 @@ app
     port: 3333,
   })
   .then((resp) => {
-    console.log(`This is server running in ${resp}`)
+    console.info(`This is server running in ${resp}`)
   })

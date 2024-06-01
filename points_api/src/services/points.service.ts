@@ -8,6 +8,20 @@ interface insertProps {
   month: string
 }
 
+interface PointsProps {
+  id: string
+  user_id: string
+  value: number
+  month: string
+  message: string
+  created_at: Date
+}
+
+interface ValuesSelect {
+  points: PointsProps[]
+  userName: string
+}
+
 export class PointsService {
   private table = 'points'
 
@@ -26,12 +40,32 @@ export class PointsService {
   }
 
   async listPointsOnUser(userId: string, month: string) {
-    console.log(userId, month)
     return await this.driver(this.table)
       .where({
         user_id: userId,
         month,
       })
       .select('*')
+  }
+
+  async resumeAll(users: { id: string; name: string }[], month: string) {
+    return async () => {
+      const values: ValuesSelect[] = []
+      for (const user of users) {
+        const points = await this.driver(this.table)
+          .where({
+            user_id: user.id,
+            month,
+          })
+          .select('*')
+
+        values.push({
+          userName: user.name,
+          points,
+        })
+      }
+
+      return values
+    }
   }
 }
