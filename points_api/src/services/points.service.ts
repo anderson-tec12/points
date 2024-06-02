@@ -20,6 +20,7 @@ interface PointsProps {
 interface ValuesSelect {
   points: PointsProps[]
   userName: string
+  userId: string
 }
 
 export class PointsService {
@@ -62,6 +63,7 @@ export class PointsService {
         values.push({
           userName: user.name,
           points,
+          userId: user.id,
         })
       }
 

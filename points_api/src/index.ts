@@ -3,6 +3,12 @@ import { pointsRoutes } from './controller/points'
 import { usersRoutes } from './controller/users'
 import { knex } from './knexConfig'
 
+import cors from '@fastify/cors'
+
+app.register(cors, {
+  allowedHeaders: '*',
+})
+
 app.register(usersRoutes(knex), { prefix: 'users' })
 app.register(pointsRoutes(knex), { prefix: 'points' })
 

@@ -88,6 +88,7 @@ export function pointsRoutes(knex: Knex) {
         return {
           total,
           userName: user.userName,
+          userId: user.userId,
         }
       })
 

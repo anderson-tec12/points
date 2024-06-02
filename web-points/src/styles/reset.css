@@ -1,0 +1,110 @@
+* {
+  margin: 0px;
+  padding:0px
+}
+
+body{
+  background-color:#000;
+  color:#fff
+}
+
+margin{
+  position:relative
+}
+
+.header-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px;
+  border-bottom:2px solid #ccc
+}
+
+.header-container h1{
+  font-size:22px
+}
+
+
+.container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.card{
+  background:#222;
+  width:95%;
+  padding:4px
+}
+
+.table{
+  width:100%
+}
+
+.table th{
+  text-align:left;
+  height:30px;
+  border-bottom:1px solid #fff
+}
+
+.table tbody tr td{
+  height:20px;
+  font-size:18px;
+  padding: 20px 0px
+} 
+
+.table tbody tr:nth-child(2n) {
+  background-color: #444;
+} 
+
+
+.title{
+  margin:10px;
+  margin-top:20px;
+  font-size:18px;
+  text-align:center
+}
+
+.month-header{
+  text-align:center;
+  font-size:22px
+}
+
+.points{
+  background:#033;
+  width:40px;
+  height:40px;
+  display:block;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+.container-point{
+  display:flex;
+  justify-content:center
+}
+
+.td-point{
+  width:80px;
+  padding:10px;
+}
+
+
+.add-points{
+  position:absolute;
+  bottom:10px;
+  width:100%
+}
+
+.add-points button{
+  width:100%;
+  height:60px;
+  font-size:18px;
+  background:#033;
+  color:#fff;
+  border:none
+}
