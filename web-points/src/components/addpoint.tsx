@@ -1,7 +1,9 @@
-export function AddPoint() {
+export function AddPoint({ outerView }: {
+  outerView(): void
+}) {
   return (
     <div className='add-points'>
-      <button>Adicionar</button>
+      <button type="button" onClick={() => outerView()}>Adicionar</button>
     </div>
   )
 }

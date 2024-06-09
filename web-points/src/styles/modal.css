@@ -1,0 +1,81 @@
+.modal-container {
+  padding:4px;
+  overflow:none;
+  width:100%;
+  margin-top:20px
+}
+
+.modal-container .avatar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:10px
+}
+
+.modal-container .avatar img{
+  width:160px;
+  height:160px;
+  border:2px solid #eee;
+  border-radius:50%;
+  padding:4px
+}
+
+.separ{
+  width:100%;
+  padding:10px;
+  display:flex;
+  justify-content:center;
+  gap:8px
+}
+
+.separ button{
+  width:100%;
+  height:60px;
+  font-size:18px;
+  background:#033;
+  color:#fff;
+  border:none
+}
+
+.separ .cancel{
+  width:40%;
+  background:#444;
+}
+
+select{
+  width:98%;
+  height:50px;
+  font-size:18px;
+  background:#444;
+  border:none;
+  border-radius:5px;
+  color:#fff
+}
+
+textarea{
+  width:98%;
+  height:180px;
+  font-size:18px;
+  outline:none;
+  background:#444;
+  border:none;
+  border-radius:5px;
+  color:#fff;
+  padding:4px
+}
+
+input{
+  width:98%;
+  height:50px;
+  font-size:18px;
+  outline:none;
+  background:#444;
+  border:none;
+  border-radius:5px;
+  color:#fff;
+  padding:4px
+}
+
+.off{
+  margin-top:80px
+}

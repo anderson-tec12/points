@@ -1,5 +1,23 @@
 import { USERPROPS } from '../interfaces/users';
 
+export function getImage(name: string) {
+  if (name.includes('Eduarda')) {
+    return 'users/eduarda.jpeg'
+  }
+
+  if (name.includes('Gabriel')) {
+    return 'users/gabriel.jpeg'
+  }
+
+  if (name.includes('Davi')) {
+    return 'users/davi.jpeg'
+  }
+
+  if (name.includes('Raphael')) {
+    return 'users/raphael.jpeg'
+  }
+}
+
 export function Table({ users }: { users: USERPROPS[] }) {
   return (
     <>
@@ -13,7 +31,10 @@ export function Table({ users }: { users: USERPROPS[] }) {
                 <td colSpan={3} className='month-header'>Junho</td>
               </tr>
               <tr>
-                <th>Nome</th>
+                <th>
+
+                  Nome
+                </th>
                 <th>Pontos</th>
 
               </tr>
@@ -23,7 +44,12 @@ export function Table({ users }: { users: USERPROPS[] }) {
                 users.map(user => {
                   return (
                     <tr key={user.userId}>
-                      <td>{user.userName}</td>
+                      <td>
+                        <div className='avatar-container'>
+                          <img src={getImage(user.userName)} alt="" />
+                          {user.userName}
+                        </div>
+                      </td>
                       <td className='td-point'>
                         <div className='container-point'>
                           <span className='points'>{user.total}</span>
