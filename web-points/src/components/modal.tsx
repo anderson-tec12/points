@@ -9,6 +9,8 @@ export function Modal({ users, outerView }: { users: USERPROPS[], outerView(): v
   const [description, setDescription] = useState<string>('')
   const [value, setValue] = useState(1)
 
+  const [isRequest, setRequest] = useState(false)
+
   function handle_select_user({ target }: React.ChangeEvent<HTMLSelectElement>) {
 
     const user = users.find(u => u.userId === target.value)
@@ -16,6 +18,7 @@ export function Modal({ users, outerView }: { users: USERPROPS[], outerView(): v
   }
 
   async function handle_save() {
+    setRequest(true)
     const payload = {
       "description": description,
       "userId": userSelect.userId,
@@ -23,9 +26,34 @@ export function Modal({ users, outerView }: { users: USERPROPS[], outerView(): v
     }
 
 
+    if (!payload.description) {
+      alert('Informe o motivo do ponto')
+      setRequest(false)
+      return
+    }
+
+    if (payload.value === 0) {
+      alert('Não é possivel salvar 0 pontos')
+      setRequest(false)
+      return
+    }
+
 
     await api.addPoint(payload)
+    setRequest(false)
     outerView()
+  }
+
+
+  function addPoint() {
+
+    if (value === 5) return
+    setValue(value + 1)
+  }
+
+  function minusPoint() {
+    if (value === -10) return
+    setValue(value - 1)
   }
 
   return (
@@ -53,12 +81,16 @@ export function Modal({ users, outerView }: { users: USERPROPS[], outerView(): v
       </div>
 
       <div className='separ'>
-        <input type="number" max="10" placeholder='Pontos' value={value} onChange={e => setValue(+e.target.value)} />
+        <button type="button" onClick={minusPoint}>-</button>
+        <input type="number" disabled max="10" placeholder='Pontos' value={value} onChange={e => setValue(+e.target.value)} />
+        <button type="button" onClick={addPoint}>+</button>
       </div>
 
       <div className='separ off'>
         <button className='cancel' onClick={outerView}>Cancelar</button>
-        <button type="submit" onClick={handle_save}>Cadastrar</button>
+        <button type="submit" onClick={handle_save} disabled={isRequest}>
+          {isRequest ? 'Salvando...' : 'Cadastrar'}
+        </button>
       </div>
 
     </article>

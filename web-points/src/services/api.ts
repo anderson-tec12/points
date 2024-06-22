@@ -3,7 +3,7 @@ import axios from 'axios'
 class ApiData {
 
   private api = axios.create({
-    baseURL: 'http://localhost:3333'
+    baseURL: 'https://08e6-191-233-136-140.ngrok-free.app'
   })
 
 
@@ -17,6 +17,10 @@ class ApiData {
     "value": number
   }) {
     return this.api.post('/points', payload)
+  }
+
+  async getPointsByUser(idUser: string) {
+    return this.api.get(`/points/${idUser}`)
   }
 }
 

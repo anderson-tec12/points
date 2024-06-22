@@ -1,0 +1,62 @@
+.details-container{
+  height: 100vh;
+  overflow: hidden;
+  padding:10px
+}
+
+
+.details-container .header{
+  margin:2px;
+  display:block;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold
+}
+
+.details-container main{
+  border: 0.5px solid #ccc;
+    height: 600px;
+    margin: 5px 10px;
+    border-radius:4px;
+    max-height:600px;
+    overflow:auto
+}
+
+.details-container main table{
+  width:100%;
+  padding:5px
+}
+
+.details-container main table th{
+ text-align:left
+}
+
+.details-container main table tbody td{
+  border-bottom:1px solid silver;
+  padding:4px;
+  font-size:17px;
+}
+
+.details-container main table tbody .red{
+  color: #ff4545 
+}
+
+.details-container main table tbody .green{
+  color: #5edd9e 
+}
+
+.details-container footer{
+  width:100%;
+  padding: 5px 10px;
+  display:flex;
+}
+
+.details-container footer button{
+  width:100%;
+  height:60px;
+  font-size:18px;
+  background:#444;
+  color:#fff;
+  border:none;
+  
+}

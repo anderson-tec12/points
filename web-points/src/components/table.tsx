@@ -18,7 +18,10 @@ export function getImage(name: string) {
   }
 }
 
-export function Table({ users }: { users: USERPROPS[] }) {
+export function Table({ users, handelDetails }: {
+  users: USERPROPS[],
+  handelDetails(user: USERPROPS): void
+}) {
   return (
     <>
       <h2 className='title'>Resumo da pontuação</h2>
@@ -43,7 +46,7 @@ export function Table({ users }: { users: USERPROPS[] }) {
               {
                 users.map(user => {
                   return (
-                    <tr key={user.userId}>
+                    <tr key={user.userId} onClick={() => { handelDetails(user) }}>
                       <td>
                         <div className='avatar-container'>
                           <img src={getImage(user.userName)} alt="" />
