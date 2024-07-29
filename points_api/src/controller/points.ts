@@ -15,13 +15,22 @@ export function pointsRoutes(knex: Knex) {
             idUser: z.string(),
           })
 
+          const querySchemaValidate = z.object({
+            range: z.string().optional(),
+          })
+
+          console.log('request ', request.query)
+          const period = querySchemaValidate.parse(request.query)
+
           const { idUser } = paramsSchemaValidate.parse(request.params)
           const pointsService = new PointsService(knex)
 
           const monthCurrent = dateUtils.getMonthAndYear()
+
+
           const pointsUser = await pointsService.listPointsOnUser(
             idUser,
-            monthCurrent,
+            period.range || monthCurrent,
           )
 
           const totalPointsInCurrentMonth = pointsUser.reduce((acc, point) => {
@@ -32,7 +41,7 @@ export function pointsRoutes(knex: Knex) {
           reply.status(200).send({
             points: pointsUser,
             total: totalPointsInCurrentMonth,
-            month: monthCurrent,
+            month: period.range || monthCurrent,
           })
         } catch (e) {
           reply.status(500).send({ error: e })
