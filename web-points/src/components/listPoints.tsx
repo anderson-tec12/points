@@ -12,18 +12,41 @@ interface IPOINTS {
 
 export function ListPoints({ user, outerView }: { user: USERPROPS, outerView(): void }) {
   const [points, setPoints] = useState<IPOINTS[]>([])
+  const [month, setMonth] = useState(() => {
+    const date = new Date()
+    return String(date.getMonth() + 1).padStart(2, '0')
+  })
 
   useEffect(() => {
     (async () => {
-      const response = await api.getPointsByUser(user.userId)
+      const response = await api.getPointsByUser(user.userId, month)
 
       setPoints(response.data.points)
     })()
-  }, [user])
+  }, [user, month])
 
   return (
     <section className='details-container'>
-      <span className='header'>{user.userName}</span>
+      <div className='header'>
+        <span>{user.userName}</span>
+
+        <div className='header-filter'>
+          <select name="" id="" value={month} onChange={e => setMonth(e.target.value)}>
+            <option value="01">Janeiro</option>
+            <option value="02">Fevereiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dexembro</option>
+          </select>
+        </div>
+      </div>
 
       <main>
         <table>

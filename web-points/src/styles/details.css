@@ -7,10 +7,13 @@
 
 .details-container .header{
   margin:2px;
-  display:block;
+  display:flex;
   text-align:center;
   font-size:18px;
-  font-weight:bold
+  font-weight:bold;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
 }
 
 .details-container main{
