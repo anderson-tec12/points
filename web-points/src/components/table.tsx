@@ -22,6 +22,65 @@ export function Table({ users, handelDetails }: {
   users: USERPROPS[],
   handelDetails(user: USERPROPS): void
 }) {
+
+  function nameMoth() {
+    const month = new Date().getMonth() + 1
+
+    switch (month) {
+      case 1: {
+        return 'Janeiro'
+      }
+
+      case 2: {
+        return 'Fevereiro'
+      }
+
+      case 3: {
+        return 'Março'
+      }
+
+      case 4: {
+        return 'Abril'
+      }
+
+      case 5: {
+        return 'maio'
+      }
+
+      case 6: {
+        return 'Junho'
+      }
+
+      case 7: {
+        return 'Julho'
+      }
+
+      case 8: {
+        return 'Agosto'
+      }
+
+      case 9: {
+        return 'Setembro'
+      }
+
+      case 10: {
+        return 'Outubro'
+      }
+
+      case 11: {
+        return 'Novembro'
+      }
+
+      case 12: {
+        return 'Dexembro'
+      }
+
+      default: {
+        return 'NONE'
+      }
+    }
+  }
+
   return (
     <>
       <h2 className='title'>Resumo da pontuação</h2>
@@ -31,7 +90,9 @@ export function Table({ users, handelDetails }: {
           <table className='table'>
             <thead>
               <tr>
-                <td colSpan={3} className='month-header'>Junho</td>
+                <td colSpan={3} className='month-header'>
+                  {nameMoth()}
+                </td>
               </tr>
               <tr>
                 <th>
