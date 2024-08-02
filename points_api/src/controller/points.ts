@@ -19,14 +19,12 @@ export function pointsRoutes(knex: Knex) {
             range: z.string().optional(),
           })
 
-          console.log('request ', request.query)
           const period = querySchemaValidate.parse(request.query)
 
           const { idUser } = paramsSchemaValidate.parse(request.params)
           const pointsService = new PointsService(knex)
 
           const monthCurrent = dateUtils.getMonthAndYear()
-
 
           const pointsUser = await pointsService.listPointsOnUser(
             idUser,

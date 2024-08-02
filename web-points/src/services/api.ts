@@ -3,7 +3,7 @@ import axios from 'axios'
 class ApiData {
 
   private api = axios.create({
-    baseURL: 'https://5a59-191-233-136-140.ngrok-free.app'
+    baseURL: 'https://37c6-191-233-136-140.ngrok-free.app'
   })
 
 
